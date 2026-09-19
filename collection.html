@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Колекція — Caeser Historic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style3.css">
+
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      <svg width="18" height="30" viewBox="0 0 24 40" fill="none"><path d="M12 0L24 40H0L12 0Z" fill="#b5964d"/></svg>
+      Музей<br>Caeser<br>Historic
+    </a>
+    <nav class="nav-links">
+      <a href="collection.html" class="current">Колекція</a>
+      <a href="about.html">Про музей</a>
+      <a href="index.html#footer">Локація</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<section class="cat-hero">
+  <div class="wrap cat-hero-grid">
+    <div>
+      <p class="eyebrow">Каталог</p>
+      <h1>Уся <span class="accent">колекція</span> в одному місці</h1>
+    </div>
+    <p class="cat-hero-note">Постійна експозиція налічує понад <strong>60 творів</strong> класичного періоду — мармурові статуї, бюсти, рельєфи та об'єкти пересувних виставок. Оберіть категорію, щоб звузити перегляд.</p>
+  </div>
+</section>
+
+<nav class="filters wrap" aria-label="Фільтр за категорією">
+  <button class="filter-btn active" data-filter="all">Усі твори</button>
+  <button class="filter-btn" data-filter="statue">Статуї</button>
+  <button class="filter-btn" data-filter="bust">Бюсти</button>
+  <button class="filter-btn" data-filter="relief">Рельєфи</button>
+  <button class="filter-btn" data-filter="touring">Пересувна виставка</button>
+</nav>
+
+<section class="catalog">
+  <div class="wrap">
+    <div class="grid" id="grid">
+
+      <article class="piece show" data-cat="statue">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/c2fcf579-65a2-4afe-9189-8986cd87bde3.png" alt="Мармурова статуя"></div>
+        <div class="cat-label">Статуя · Мармур</div>
+        <h4>«Аполлон Бельведерський», римська копія</h4>
+        <p>Одна з найвідоміших скульптур класичного канону, що часто приписується грецькому майстру Леохару.</p>
+        <div class="meta"><span><span class="dot"></span>Зал I</span><span><span class="dot"></span>II ст. н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="touring">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/d5a0acbf-5cb2-4c3f-9f85-98423523af32.png" alt="Дискобол"></div>
+        <div class="cat-label">Статуя · Пересувна виставка</div>
+        <h4>«Дискобол» Мірона</h4>
+        <p>Римська мармурова копія втраченого бронзового оригіналу, частина виставки «Тілесна краса у Стародавній Греції».</p>
+        <div class="meta"><span><span class="dot"></span>Зал II</span><span><span class="dot"></span>II ст. н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="bust">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/752fbcf2-2675-4681-be6c-dc466bbd8d5e.png" alt="Мармурова голова Зевса"></div>
+        <div class="cat-label">Бюст · Мармур</div>
+        <h4>Голова Зевса, римська імперська доба</h4>
+        <p>Фрагмент культової статуї, що демонструє характерну для періоду трактовку волосся й бороди.</p>
+        <div class="meta"><span><span class="dot"></span>Зал III</span><span><span class="dot"></span>кін. I – II ст. н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="statue">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/0a09ff22-e144-45fa-ac29-2c32f8a6d108.png" alt="Група Лаокоона"></div>
+        <div class="cat-label">Статуя · Мармур</div>
+        <h4>«Лаокоон і його сини»</h4>
+        <p>Скульптурна група, відома також як «Група Лаокоона» — один із найдраматичніших творів елліністичного бароко.</p>
+        <div class="meta"><span><span class="dot"></span>Зал I</span><span><span class="dot"></span>I ст. до н.е. – I ст. н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="relief">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/750a9fb8-9c79-4c82-ae0f-4da24583106e.png" alt="Мармуровий рельєф"></div>
+        <div class="cat-label">Рельєф · Мармур</div>
+        <h4>Вотивний рельєф з процесією</h4>
+        <p>Невеликий рельєф, що зображує урочисту ходу — приклад побутової релігійної практики класичного періоду.</p>
+        <div class="meta"><span><span class="dot"></span>Зал IV</span><span><span class="dot"></span>V ст. до н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="touring">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/bffdac92-2370-4432-ad48-007dda756f04.png" alt="Дискобол, інший ракурс"></div>
+        <div class="cat-label">Статуя · Пересувна виставка</div>
+        <h4>«Дискобол», деталь торсу</h4>
+        <p>Крупний план демонструє анатомічну точність, якою прославилась школа Мірона.</p>
+        <div class="meta"><span><span class="dot"></span>Зал II</span><span><span class="dot"></span>II ст. н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="bust">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/77549b6d-2e77-485c-94db-81066ab36c32.png" alt="Портретний бюст"></div>
+        <div class="cat-label">Бюст · Мармур</div>
+        <h4>Портретний бюст римського патриція</h4>
+        <p>Реалістичне зображення обличчя — характерна риса римської портретної традиції на відміну від ідеалізованої грецької.</p>
+        <div class="meta"><span><span class="dot"></span>Зал III</span><span><span class="dot"></span>I ст. н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="statue">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/c2fcf579-65a2-4afe-9189-8986cd87bde3.png" alt="Статуя Афіни"></div>
+        <div class="cat-label">Статуя · Мармур</div>
+        <h4>Зменшена копія Афіни Парфенос</h4>
+        <p>Настільна репліка культової статуї Фідія, що первісно стояла в Парфеноні на афінському Акрополі.</p>
+        <div class="meta"><span><span class="dot"></span>Зал I</span><span><span class="dot"></span>римська копія</span></div>
+      </article>
+
+      <article class="piece show" data-cat="relief">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/d5a0acbf-5cb2-4c3f-9f85-98423523af32.png" alt="Рельєф з атлетами"></div>
+        <div class="cat-label">Рельєф · Мармур</div>
+        <h4>Рельєф із зображенням атлетів</h4>
+        <p>Фриз, що прикрашав громадську споруду — атлети зображені в русі, характерному для змагань палестри.</p>
+        <div class="meta"><span><span class="dot"></span>Зал IV</span><span><span class="dot"></span>IV ст. до н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="bust">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/752fbcf2-2675-4681-be6c-dc466bbd8d5e.png" alt="Бюст філософа"></div>
+        <div class="cat-label">Бюст · Мармур</div>
+        <h4>Бюст невідомого філософа</h4>
+        <p>Заглиблений погляд і зморшки на чолі — типова іконографія для зображення мислителів у пізній античності.</p>
+        <div class="meta"><span><span class="dot"></span>Зал III</span><span><span class="dot"></span>II–III ст. н.е.</span></div>
+      </article>
+
+      <article class="piece show" data-cat="touring">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/0a09ff22-e144-45fa-ac29-2c32f8a6d108.png" alt="Об'єкт пересувної виставки"></div>
+        <div class="cat-label">Статуя · Пересувна виставка</div>
+        <h4>«Тілесна краса у Стародавній Греції» — експонат № 14</h4>
+        <p>Один із об'єктів великої міжнародної виставки, що представляє скарби грецько-римської колекції.</p>
+        <div class="meta"><span><span class="dot"></span>Тимчасова зала</span><span><span class="dot"></span>до 6 жовтня</span></div>
+      </article>
+
+      <article class="piece show" data-cat="statue">
+        <div class="img-box"><img src="https://www.figma.com/api/mcp/asset/750a9fb8-9c79-4c82-ae0f-4da24583106e.png" alt="Торс атлета"></div>
+        <div class="cat-label">Статуя · Мармур</div>
+        <h4>Торс атлета, тип Поліклета</h4>
+        <p>Фрагментарна статуя, що ілюструє канон пропорцій, розроблений скульптором Поліклетом.</p>
+        <div class="meta"><span><span class="dot"></span>Зал II</span><span><span class="dot"></span>римська копія</span></div>
+      </article>
+
+    </div>
+    <p class="empty-note" id="emptyNote">У цій категорії наразі немає експонатів для показу.</p>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="wrap">
+    <a class="back-link" href="index.html">← На головну</a>
+    <div class="foot-bottom">Дизайн: <span class="g">Tsavsar</span> · Верстка з турботою · © 2023 Музей Caeser Historic</div>
+  </div>
+</footer>
+
+<script src="script2.js"></script>
+
+</body>
+</html>

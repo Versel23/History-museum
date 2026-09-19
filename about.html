@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Про музей — Caeser Historic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0c;
+    --bg-soft:#141210;
+    --gold:#b5964d;
+    --gold-bright:#d6b877;
+    --text:#d9d9d9;
+    --text-dim:#8f8b83;
+    --line: rgba(217,217,217,0.15);
+    --max: 1240px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'Inter', sans-serif; font-weight:300; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
+  .eyebrow{
+    font-family:'Bebas Neue', sans-serif; letter-spacing:0.14em; color:var(--gold);
+    font-size:15px; text-transform:uppercase; margin:0 0 10px;
+  }
+  h1,h2,h3{ font-family:'Bebas Neue', sans-serif; font-weight:400; letter-spacing:0.01em; margin:0; }
+  ::selection{ background:var(--gold); color:#0c0c0c; }
+
+  /* header (shared) */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:linear-gradient(to bottom, rgba(12,12,12,0.95), rgba(12,12,12,0.75));
+    backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
+  }
+  .nav{ max-width:var(--max); margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Bebas Neue', sans-serif; letter-spacing:0.04em; font-size:18px; line-height:1.05; color:var(--text); }
+  .logo svg{ flex:none; }
+  .nav-links{ display:flex; gap:40px; font-size:15px; font-weight:400; }
+  .nav-links a{ color:var(--text); opacity:0.85; transition:opacity .2s; }
+  .nav-links a:hover, .nav-links a.current{ opacity:1; color:var(--gold-bright); }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--text); width:40px; height:40px; border-radius:4px; cursor:pointer; font-size:18px; }
+
+  /* ---- intro: full-bleed statement, no image, no card grid ---- */
+  .intro{ padding:100px 0 70px; border-bottom:1px solid var(--line); }
+  .intro .eyebrow{ margin-bottom:22px; }
+  .intro h1{
+    font-size:44px; line-height:1.18; max-width:920px; color:var(--text); font-weight:400;
+  }
+  .intro h1 em{ font-style:normal; color:var(--gold); }
+
+  /* ---- founding facts strip ---- */
+  .facts{
+    border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .fact{ padding:36px 32px; border-left:1px solid var(--line); }
+  .fact:first-child{ border-left:none; }
+  .fact .n{ font-family:'Bebas Neue', sans-serif; font-size:40px; color:var(--gold); line-height:1; }
+  .fact .l{ font-size:12.5px; color:var(--text-dim); margin-top:8px; max-width:180px; }
+
+  /* ---- history: vertical narrative, alternating text/rule, no photos ---- */
+  .history{ padding:100px 0; border-bottom:1px solid var(--line); }
+  .history-head{ max-width:640px; margin-bottom:56px; }
+  .history-head p{ color:var(--text-dim); font-size:15px; margin-top:12px; }
+  .era-list{ display:flex; flex-direction:column; }
+  .era{
+    display:grid; grid-template-columns:140px 1fr; gap:36px;
+    padding:30px 0; border-top:1px solid var(--line);
+  }
+  .era:last-child{ border-bottom:1px solid var(--line); }
+  .era .year{ font-family:'Bebas Neue', sans-serif; font-size:26px; color:var(--gold-bright); }
+  .era h4{ font-family:'IBM Plex Sans', sans-serif; font-weight:600; font-size:16px; color:var(--text); margin:0 0 8px; }
+  .era p{ font-size:14px; color:var(--text-dim); max-width:600px; margin:0; }
+
+  /* ---- philosophy: two pull-quote style statements, center column ---- */
+  .philosophy{ padding:100px 0; border-bottom:1px solid var(--line); background:var(--bg-soft); }
+  .quote-col{ max-width:760px; margin:0 auto; text-align:center; }
+  .quote-col .eyebrow{ text-align:center; }
+  .quote-col blockquote{
+    margin:0 0 26px; font-family:'Bebas Neue', sans-serif; font-weight:400;
+    font-size:30px; line-height:1.28; color:var(--text);
+  }
+  .quote-col cite{ font-style:normal; font-size:13px; color:var(--text-dim); }
+
+  /* ---- leadership: name/role rows, not cards ---- */
+  .team{ padding:100px 0; border-bottom:1px solid var(--line); }
+  .team-head{ max-width:640px; margin-bottom:48px; }
+  .team-head p{ color:var(--text-dim); font-size:15px; margin-top:12px; }
+  .team-list{ }
+  .member{
+    display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:20px;
+    padding:22px 0; border-top:1px solid var(--line);
+  }
+  .team-list .member:last-child{ border-bottom:1px solid var(--line); }
+  .member h4{ font-family:'IBM Plex Sans', sans-serif; font-weight:600; font-size:17px; color:var(--text); margin:0; }
+  .member .role{ font-size:13px; color:var(--gold); margin-top:4px; }
+  .member .since{ font-size:12.5px; color:var(--text-dim); white-space:nowrap; }
+
+  /* ---- visit panel: practical info, distinct from footer hours ---- */
+  .visit{ padding:100px 0; }
+  .visit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+  .visit-col h3{
+    font-family:'IBM Plex Sans', sans-serif; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; font-size:13px; color:var(--gold); margin-bottom:18px;
+  }
+  .visit-col dl{ margin:0; }
+  .visit-col dt{ font-size:14px; color:var(--text); font-weight:400; }
+  .visit-col dd{ margin:2px 0 18px; font-size:13px; color:var(--text-dim); }
+  .visit-col p{ font-size:14.5px; color:var(--text); margin:0 0 14px; }
+  .cta-row{ margin-top:8px; }
+  .cta{
+    display:inline-block; padding:13px 26px; border:1px solid var(--gold);
+    color:var(--gold-bright); font-family:'IBM Plex Sans', sans-serif; font-size:14px;
+    font-weight:500; border-radius:2px; transition:.2s;
+  }
+  .cta:hover{ background:var(--gold); color:#0c0c0c; }
+
+  footer{ padding:54px 0 34px; border-top:1px solid var(--line); }
+  .foot-bottom{ text-align:center; font-size:13px; color:var(--text-dim); }
+  .foot-bottom .g{ color:var(--gold); }
+  .back-link{ display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:var(--text-dim); margin-bottom:36px; }
+  .back-link:hover{ color:var(--gold-bright); }
+
+  @media (max-width: 900px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:block; }
+    .intro h1{ font-size:32px; }
+    .facts{ grid-template-columns:repeat(2,1fr); }
+    .fact:nth-child(3){ border-left:none; }
+    .era{ grid-template-columns:1fr; gap:8px; }
+    .visit-grid{ grid-template-columns:1fr; gap:40px; }
+    .quote-col blockquote{ font-size:24px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; } *{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      <svg width="18" height="30" viewBox="0 0 24 40" fill="none"><path d="M12 0L24 40H0L12 0Z" fill="#b5964d"/></svg>
+      Музей<br>Caeser<br>Historic
+    </a>
+    <nav class="nav-links">
+      <a href="collection.html">Колекція</a>
+      <a href="about.html" class="current">Про музей</a>
+      <a href="index.html#footer">Локація</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <p class="eyebrow">Про музей</p>
+    <h1>Caeser Historic зберігає мову форми, якою давні майстри говорили про тіло, силу й спокій — <em>і передає її далі, не спрощуючи</em>.</h1>
+  </div>
+</section>
+
+<section class="facts wrap">
+  <div class="fact">
+    <div class="n">1962</div>
+    <div class="l">Рік заснування музею на місці колишньої мармурової майстерні</div>
+  </div>
+  <div class="fact">
+    <div class="n">4</div>
+    <div class="l">Постійні зали — статуї, бюсти, рельєфи, тимчасові виставки</div>
+  </div>
+  <div class="fact">
+    <div class="n">60+</div>
+    <div class="l">Творів у постійній експозиції на сьогодні</div>
+  </div>
+  <div class="fact">
+    <div class="n">3</div>
+    <div class="l">Континенти, якими курсують пересувні виставки музею</div>
+  </div>
+</section>
+
+<section class="history">
+  <div class="wrap">
+    <div class="history-head">
+      <p class="eyebrow">Історія</p>
+      <h2>Як музей став тим, чим є</h2>
+      <p>Від невеликої приватної колекції мармурових копій до установи, що бере участь у міжнародному обміні виставками.</p>
+    </div>
+    <div class="era-list">
+      <div class="era">
+        <div class="year">1962</div>
+        <div>
+          <h4>Приватна майстерня стає музеєм</h4>
+          <p>Родина реставраторів мармуру відкриває для відвідувачів свою робочу колекцію копій класичних статуй — початок нинішньої постійної експозиції.</p>
+        </div>
+      </div>
+      <div class="era">
+        <div class="year">1981</div>
+        <div>
+          <h4>Розширення до чотирьох залів</h4>
+          <p>Добудова крила для бюстів і рельєфів дозволяє вперше показати побутові та портретні предмети окремо від великих статуй.</p>
+        </div>
+      </div>
+      <div class="era">
+        <div class="year">2004</div>
+        <div>
+          <h4>Перша пересувна виставка</h4>
+          <p>Музей починає приймати й відправляти виставки за кордон, розпочавши практику, що триває й сьогодні.</p>
+        </div>
+      </div>
+      <div class="era">
+        <div class="year">2023</div>
+        <div>
+          <h4>Оновлення освітньої програми</h4>
+          <p>Запроваджено регулярні екскурсії для шкіл і університетів та розширено доступ до архіву для дослідників.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap quote-col">
+    <p class="eyebrow">Підхід</p>
+    <blockquote>Ми показуємо копію так само уважно, як оригінал — бо саме копії донесли цю мову форми до нас.</blockquote>
+    <cite>Кураторська команда музею</cite>
+  </div>
+</section>
+
+<section class="team">
+  <div class="wrap">
+    <div class="team-head">
+      <p class="eyebrow">Команда</p>
+      <h2>Хто відповідає за колекцію</h2>
+      <p>Куратори, реставратори та освітній відділ, що готують кожну виставку й екскурсію.</p>
+    </div>
+    <div class="team-list">
+      <div class="member">
+        <div>
+          <h4>Ірина Ковальчук</h4>
+          <div class="role">Головна кураторка</div>
+        </div>
+        <div class="since">у музеї з 2011</div>
+      </div>
+      <div class="member">
+        <div>
+          <h4>Дмитро Гнатюк</h4>
+          <div class="role">Реставратор мармуру</div>
+        </div>
+        <div class="since">у музеї з 2015</div>
+      </div>
+      <div class="member">
+        <div>
+          <h4>Олена Пасічник</h4>
+          <div class="role">Керівниця освітніх програм</div>
+        </div>
+        <div class="since">у музеї з 2019</div>
+      </div>
+      <div class="member">
+        <div>
+          <h4>Марко Величко</h4>
+          <div class="role">Координатор пересувних виставок</div>
+        </div>
+        <div class="since">у музеї з 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="visit">
+  <div class="wrap visit-grid">
+    <div class="visit-col">
+      <h3>Плануєте відвідати?</h3>
+      <p>Екскурсії з гідом проводяться щогодини і не потребують попереднього запису для груп до 6 осіб. Для шкіл і університетів — окреме бронювання освітньої програми.</p>
+      <div class="cta-row"><a class="cta" href="index.html#footer">Години роботи та адреса</a></div>
+    </div>
+    <div class="visit-col">
+      <h3>Доступність</h3>
+      <dl>
+        <dt>Візки та коляски</dt>
+        <dd>Усі зали на одному рівні, пандус при вході</dd>
+        <dt>Аудіогід</dt>
+        <dd>Доступний українською та англійською мовами</dd>
+        <dt>Для дослідників</dt>
+        <dd>Архів відкритий за попереднім записом через кураторський відділ</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="wrap">
+    <a class="back-link" href="index.html">← На головну</a>
+    <div class="foot-bottom">Дизайн: <span class="g">Tsavsar</span> · Верстка з турботою · © 2023 Музей Caeser Historic</div>
+  </div>
+</footer>
+
+<script src="script3.js"></script>
+
+</body>
+</html>
