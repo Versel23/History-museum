@@ -111,15 +111,59 @@ header{
 @keyframes fadeIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
 
 .piece .img-box{
-  border-radius:16px; overflow:hidden; background:var(--bg-soft);
+  position:relative;
+  border-radius:16px; overflow:hidden;
   height:260px; margin-bottom:16px; border:1px solid var(--line);
   transition:border-color .2s;
 }
-.piece .img-box img{ width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+/* Заглушка: іконка категорії + меандр + золоте сяйво.
+   Видно, поки фото не завантажилось або якщо посилання не працює. */
+.piece .img-box,
+.piece .img-box img::after{
+  background:
+    var(--ico) center 44% / 84px no-repeat,
+    var(--meander) left 0 bottom 18px / 22px 11px repeat-x,
+    radial-gradient(circle at 50% 42%, rgba(181,150,77,0.2) 0%, rgba(181,150,77,0) 60%),
+    linear-gradient(160deg, #1b1814 0%, var(--bg-soft) 55%, #0f0e0c 100%);
+}
+.piece .img-box img{
+  position:relative; z-index:1;
+  width:100%; height:100%; object-fit:cover;
+  color:transparent; font-size:0;          /* ховає alt-текст битого зображення */
+  transition:transform .4s ease;
+}
+/* Chrome/Firefox дозволяють ::after лише на битих <img> — перекриваємо значок "зламане фото" */
+.piece .img-box img::after{
+  content:''; position:absolute; inset:0;
+}
+/* Тимчасові посилання Figma (figma.com/api/mcp/asset) вже не працюють —
+   ховаємо ці <img>, щоб було видно іконку-ілюстрацію.
+   Щойно в src буде нормальний шлях (напр. images/apollo.jpg) — фото покажеться саме. */
+.piece .img-box img[src*="figma.com/api/mcp"]{ display:none; }
+
+/* Арка-ніша над іконкою — як у музейній вітрині */
+.piece .img-box::before{
+  content:''; position:absolute; z-index:0;
+  left:50%; top:22%; transform:translateX(-50%);
+  width:120px; height:150px;
+  border:1px solid rgba(181,150,77,0.35); border-bottom:none;
+  border-radius:60px 60px 0 0;
+  pointer-events:none;
+}
+/* Підпис категорії внизу заглушки */
+.piece .img-box::after{
+  content:''; position:absolute; z-index:0;
+  left:50%; bottom:40px; transform:translateX(-50%);
+  width:150px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  pointer-events:none;
+}
+.piece:hover .img-box{ background-size: 94px, 22px 11px, auto, auto; }
 .piece:hover .img-box{ border-color:var(--gold); }
 .piece:hover .img-box img{ transform:scale(1.04); }
 
-.cat-label{ color:var(--gold); font-size:11px; letter-spacing:.08em; margin-bottom:6px; text-transform:uppercase; }
+.cat-label::before{ width:13px; height:13px; }
+.cat-label{ display:flex; align-items:center; gap:7px; color:var(--gold); font-size:11px; letter-spacing:.08em; margin-bottom:6px; text-transform:uppercase; }
 .piece h4{
   font-family:'IBM Plex Sans', sans-serif; font-weight:600; color:var(--gold);
   font-size:14px; margin:0 0 8px; line-height:1.35;
