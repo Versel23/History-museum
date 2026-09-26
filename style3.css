@@ -7,6 +7,15 @@
   --text-dim:#8f8b83;
   --line: rgba(217,217,217,0.15);
   --max: 1240px;
+
+  /* іконки категорій (золоті лінійні SVG) — використовуються і як фон, і як маска */
+  --i-all: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23b5964d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><rect x='10' y='10' width='18' height='18' rx='2'/><rect x='36' y='10' width='18' height='18' rx='2'/><rect x='10' y='36' width='18' height='18' rx='2'/><rect x='36' y='36' width='18' height='18' rx='2'/></svg>");
+  --i-statue: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23b5964d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><circle cx='32' cy='11' r='5'/><path d='M32 16v18M23 23l9-4 9 4M27 48l5-14 5 14'/><path d='M20 48h24v6H20zM16 54h32v5H16z'/></svg>");
+  --i-bust: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23b5964d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><circle cx='32' cy='19' r='10'/><path d='M16 46c0-9 7-14 16-14s16 5 16 14z'/><path d='M25 46h14v6H25zM20 52h24v6H20z'/></svg>");
+  --i-relief: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23b5964d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><rect x='8' y='12' width='48' height='40' rx='2'/><rect x='14' y='18' width='36' height='28'/><circle cx='25' cy='25' r='3'/><path d='M25 28v9M21 43l4-6 4 6'/><circle cx='39' cy='25' r='3'/><path d='M39 28v9M35 43l4-6 4 6'/></svg>");
+  --i-touring: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23b5964d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M18 11h28M21 16h22M24 16v28M32 16v28M40 16v28'/><path d='M19 44h26v5H19z'/><path d='M8 57h42M45 53l6 4-6 4'/></svg>");
+  /* грецький меандр для декоративної смуги */
+  --meander: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10' fill='none' stroke='%23b5964d' stroke-opacity='0.45' stroke-width='1.2'><path d='M0 9h17V1H3v6h10V4H7'/></svg>");
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -68,7 +77,21 @@ header{
   display:flex; flex-wrap:wrap; gap:12px;
   padding-top:40px; padding-bottom:40px;
 }
+.filter-btn[data-filter="all"]{ --ico: var(--i-all); }
+.filter-btn[data-filter="statue"], .piece[data-cat="statue"]{ --ico: var(--i-statue); }
+.filter-btn[data-filter="bust"], .piece[data-cat="bust"]{ --ico: var(--i-bust); }
+.filter-btn[data-filter="relief"], .piece[data-cat="relief"]{ --ico: var(--i-relief); }
+.filter-btn[data-filter="touring"], .piece[data-cat="touring"]{ --ico: var(--i-touring); }
+
+.filter-btn::before, .cat-label::before{
+  content:''; flex:none;
+  background-color:currentColor;
+  -webkit-mask: var(--ico) center / contain no-repeat;
+          mask: var(--ico) center / contain no-repeat;
+}
+.filter-btn::before{ width:17px; height:17px; }
 .filter-btn{
+  display:inline-flex; align-items:center; gap:9px;
   background:none; cursor:pointer;
   padding:10px 20px; border:1px solid var(--line); border-radius:2px;
   color:var(--text-dim); font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:500;
